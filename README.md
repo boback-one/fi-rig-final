@@ -1,6 +1,13 @@
 
 I'm not responsible for any damage you may do or your actions.
 
+Practical wiring specifics for the S3
+
+VDD3P3 — this is your primary glitch rail. It feeds the CPU, SRAM, and peripherals. Remove the bulk decoupling caps near the chip (typically 10–100 µF) and replace with a small 100 nF bypass only — the large caps absorb your glitch
+EN (pin 3) — active-low reset, pulled high through a resistor. Connect this to a GPIO on your FPGA so you can reset the chip programmatically between glitch attempts
+GPIO0 (pin 27) — pulling low at boot forces the download/bootloader mode. Tie this to another FPGA GPIO for automated boot mode control
+VDDA — the analog supply (also 3.3 V). Less common target, but worth monitoring
+Clock: the S3 uses an internal PLL from a 40 MHz crystal. You can substitute the crystal with a clock output from your FPGA for full clock glitching control, though the internal PLL startup complicates this — easier to stick with voltage glitching
 
 
 using an esp32 s3 for a fault-injection rig capable of delivering sub-microsecond voltage glitches to selected rails, 
