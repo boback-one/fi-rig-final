@@ -1,3 +1,8 @@
+
+I'm not responsible for any damage you may do or your actions.
+
+
+
 using an esp32 s3 for a fault-injection rig capable of delivering sub-microsecond voltage glitches to selected rails, 
 while observing power, clock, and memory signals. 
 This is a solid hardware security research project.
